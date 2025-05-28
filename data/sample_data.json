@@ -1,0 +1,18 @@
+{
+  "molten_temp": 700.0,
+  "production_cycletime": 30.0,
+  "low_section_speed": 25.0,
+  "high_section_speed": 100.0,
+  "cast_pressure": 60.0,
+  "biscuit_thickness": 12.0,
+  "upper_mold_temp1": 200.0,
+  "upper_mold_temp2": 200.0,
+  "upper_mold_temp3": 200.0,
+  "lower_mold_temp1": 200.0,
+  "lower_mold_temp2": 200.0,
+  "lower_mold_temp3": 200.0,
+  "sleeve_temperature": 230.0,
+  "physical_strength": 300.0,
+  "Coolant_temperature": 25.0,
+  "passorfail": "Pass"
+}

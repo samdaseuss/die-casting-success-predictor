@@ -1,0 +1,41 @@
+/* 다크 테마 */
+.dark-theme {
+    --bg-color: #1e1e1e;
+    --text-color: #ffffff;
+    --accent-color: #4fc3f7;
+    --card-bg: #2d2d2d;
+}
+
+.dark-theme .main-header {
+    color: var(--accent-color);
+}
+
+.dark-theme .result-box {
+    background: var(--card-bg);
+    color: var(--text-color);
+}
+
+/* 라이트 테마 (기본) */
+.light-theme {
+    --bg-color: #ffffff;
+    --text-color: #333333;
+    --accent-color: #1f77b4;
+    --card-bg: #f8f9fa;
+}
+
+/* 다이캐스팅 전용 테마 */
+.manufacturing-theme {
+    --primary-color: #ff6b35;
+    --secondary-color: #004e89;
+    --success-color: #2ecc71;
+    --warning-color: #f39c12;
+    --danger-color: #e74c3c;
+}
+
+.manufacturing-theme .main-header {
+    color: var(--primary-color);
+}
+
+.manufacturing-theme .sub-header {
+    color: var(--secondary-color);
+}
