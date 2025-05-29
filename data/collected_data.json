@@ -3998,5 +3998,25 @@
     "passorfail": "Pass",
     "timestamp": "2025-05-28T16:15:36.931270",
     "source": "test.py"
+  },
+  {
+    "molten_temp": 693.4,
+    "production_cycletime": 25.9,
+    "low_section_speed": 24.7,
+    "high_section_speed": 99.0,
+    "cast_pressure": 73.4,
+    "biscuit_thickness": 10.5,
+    "upper_mold_temp1": 203.9,
+    "upper_mold_temp2": 194.4,
+    "upper_mold_temp3": 207.3,
+    "lower_mold_temp1": 207.8,
+    "lower_mold_temp2": 195.7,
+    "lower_mold_temp3": 202.6,
+    "sleeve_temperature": 230.4,
+    "physical_strength": 319.0,
+    "Coolant_temperature": 24.1,
+    "passorfail": "Pass",
+    "timestamp": "2025-05-29T06:43:41.836057",
+    "source": "test.py"
   }
 ]

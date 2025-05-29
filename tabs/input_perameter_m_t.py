@@ -163,3 +163,40 @@ def run():
             data=json_string,
             file_name=f"diecasting_data_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}.json",
             mime="application/json")
+        
+    st.markdown("---")
+    st.markdown("### ℹ️ 시스템 정보")
+    info_cols = st.columns(5)  # 5개 열로 확장
+    current_time = datetime.datetime.now()
+    avg_temp = 0
+    if st.session_state.collected_data:
+        temp_values = []
+        for data in st.session_state.collected_data:
+            for k, v in data.items():
+                if 'temp' in k.lower() and isinstance(v, (int, float)) and v > 0:
+                    temp_values.append(v)
+        avg_temp = np.mean(temp_values) if temp_values else 0
+    
+    # 다음 수집까지의 시간 계산
+    next_snapshot_info = "N/A"
+    if st.session_state.data_collection_started:
+        last_snapshot_minutes = (time.time() - st.session_state.last_snapshot_time) / 60
+        next_snapshot_minutes = 15 - last_snapshot_minutes
+        if next_snapshot_minutes > 0:
+            next_snapshot_info = f"{next_snapshot_minutes:.1f}분 후"
+        else:
+            next_snapshot_info = "곧 저장"
+    
+    info_data = [
+        ("현재 시간", current_time.strftime('%Y-%m-%d %H:%M:%S')),
+        ("수집 상태", "🟢 진행중" if st.session_state.data_collection_started else "🔴 중지"),
+        ("총 데이터 수", f"{len(st.session_state.collected_data)}개"),
+        ("평균 온도", f"{avg_temp:.1f}°C" if avg_temp > 0 else "N/A"),
+        ("다음 수집 정보", next_snapshot_info)
+    ]
+    
+    for i, (label, value) in enumerate(info_data):
+        with info_cols[i]:
+            st.markdown('<div class="info-box">', unsafe_allow_html=True)
+            st.markdown(f"**{label}**<br>{value}", unsafe_allow_html=True)
+            st.markdown('</div>', unsafe_allow_html=True)
