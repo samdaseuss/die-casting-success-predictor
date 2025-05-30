@@ -26,5 +26,4 @@ def get_current_data():
         "timestamp": datetime.datetime.now().isoformat()
     }
 
-# 현재 데이터 (이 부분을 수정하면 대시보드에서 자동 감지)
 current_data = get_current_data()
