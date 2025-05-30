@@ -31,3 +31,6 @@ data/raw/
 # Logs
 *.log
 logs/
+
+# Data
+data/collected_data.json
