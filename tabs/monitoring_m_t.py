@@ -134,7 +134,7 @@ def create_time_series_chart(data, parameter):
         return None
 
 def run():
-    st.markdown('<h2 class="sub-header">📈 실시간 차트 모니터링</h2>', unsafe_allow_html=True)
+    st.markdown('<h2 class="sub-header">실시간 차트 모니터링</h2>', unsafe_allow_html=True)
 
     col1, col2, col3, col4 = st.columns(4)
     with col1:

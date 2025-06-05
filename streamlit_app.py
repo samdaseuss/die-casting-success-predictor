@@ -14,7 +14,7 @@ from utils.style_loader import apply_preset, apply_theme
 
 st.set_page_config(
     page_title="다이캐스팅 품질 예측 대시보드",
-    page_icon="🏮",
+    page_icon="",
     layout="wide",
     initial_sidebar_state="expanded"
 )

@@ -1,0 +1,132 @@
+[
+  {
+    "timestamp": "2025-06-05T06:35:32.223895",
+    "mold_code": 1.0,
+    "molten_temp": 729.0,
+    "cast_pressure": 329.0,
+    "passorfail": "Fail",
+    "defect": 1,
+    "data_id": "2025-06-05T06:35:32.223878_1206044129866808321",
+    "original_timestamp": "2025-06-05T06:35:32.222453"
+  },
+  {
+    "timestamp": "2025-06-05T06:35:36.991634",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 332.0,
+    "passorfail": "Fail",
+    "defect": 1,
+    "data_id": "2025-06-05T06:35:36.991615_6975969274427092908",
+    "original_timestamp": "2025-06-05T06:35:36.990723"
+  },
+  {
+    "timestamp": "2025-06-05T06:35:42.478480",
+    "mold_code": 4.0,
+    "molten_temp": 729.0,
+    "cast_pressure": 332.0,
+    "passorfail": "Fail",
+    "defect": 1,
+    "data_id": "2025-06-05T06:35:42.478465_-621020910722290502",
+    "original_timestamp": "2025-06-05T06:35:42.477644"
+  },
+  {
+    "timestamp": "2025-06-05T06:35:47.994046",
+    "mold_code": 4.0,
+    "molten_temp": 711.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1,
+    "data_id": "2025-06-05T06:35:47.994030_-6963833198146682118",
+    "original_timestamp": "2025-06-05T06:35:47.993201"
+  },
+  {
+    "timestamp": "2025-06-05T06:35:56.548980",
+    "mold_code": 4.0,
+    "molten_temp": 729.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1,
+    "data_id": "2025-06-05T06:35:56.548960_3336578639401001727",
+    "original_timestamp": "2025-06-05T06:35:56.548060"
+  },
+  {
+    "timestamp": "2025-06-05T06:36:02.446945",
+    "mold_code": 4.0,
+    "molten_temp": 716.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1,
+    "data_id": "2025-06-05T06:36:02.446915_-1081166327277330022",
+    "original_timestamp": "2025-06-05T06:36:02.445995"
+  },
+  {
+    "timestamp": "2025-06-05T06:37:52.357053",
+    "mold_code": 1.0,
+    "molten_temp": 728.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1,
+    "data_id": "2025-06-05T06:37:52.357034_5647312057743501715",
+    "original_timestamp": "2025-06-05T06:37:52.353797"
+  },
+  {
+    "timestamp": "2025-06-05T06:37:56.441465",
+    "mold_code": 1.0,
+    "molten_temp": 732.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1,
+    "data_id": "2025-06-05T06:37:56.441448_-1813398656720028247",
+    "original_timestamp": "2025-06-05T06:37:56.440391"
+  },
+  {
+    "timestamp": "2025-06-05T06:38:03.291030",
+    "mold_code": 4.0,
+    "molten_temp": 703.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1,
+    "data_id": "2025-06-05T06:38:03.291012_-7803208371776125983",
+    "original_timestamp": "2025-06-05T06:38:03.289933"
+  },
+  {
+    "timestamp": "2025-06-05T06:38:07.881431",
+    "mold_code": 0.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 332.0,
+    "passorfail": "Fail",
+    "defect": 1,
+    "data_id": "2025-06-05T06:38:07.881405_759871545583098",
+    "original_timestamp": "2025-06-05T06:38:07.879730"
+  },
+  {
+    "timestamp": "2025-06-05T06:38:12.761852",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 332.0,
+    "passorfail": "Fail",
+    "defect": 1,
+    "data_id": "2025-06-05T06:38:12.761834_-5829967222277567416",
+    "original_timestamp": "2025-06-05T06:38:12.760108"
+  },
+  {
+    "timestamp": "2025-06-05T06:38:17.626933",
+    "mold_code": 4.0,
+    "molten_temp": 728.0,
+    "cast_pressure": 332.0,
+    "passorfail": "Fail",
+    "defect": 1,
+    "data_id": "2025-06-05T06:38:17.626909_-150485259271853151",
+    "original_timestamp": "2025-06-05T06:38:17.625182"
+  },
+  {
+    "timestamp": "2025-06-05T06:38:22.243821",
+    "mold_code": 4.0,
+    "molten_temp": 728.0,
+    "cast_pressure": 331.0,
+    "passorfail": "Fail",
+    "defect": 1,
+    "data_id": "2025-06-05T06:38:22.243804_2415480024477624476",
+    "original_timestamp": "2025-06-05T06:38:22.242713"
+  }
+]

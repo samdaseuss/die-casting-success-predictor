@@ -1,0 +1,538 @@
+[
+  {
+    "timestamp": "2025-06-04T21:59:05.831478",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T21:59:09.002518",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T21:59:12.226209",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T21:59:14.715943",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T21:59:15.867565",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T21:59:19.054607",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T21:59:21.331540",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T21:59:22.506063",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T21:59:25.799024",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T21:59:28.971687",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T21:59:32.163609",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T21:59:35.328732",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T21:59:38.501881",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T21:59:41.709872",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T21:59:44.873309",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T21:59:48.060056",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T21:59:51.298086",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T21:59:54.558140",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T21:59:58.041356",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T22:00:01.330671",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T22:00:04.623513",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T22:00:07.917856",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T22:00:11.188631",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T22:00:14.409028",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T22:00:17.654915",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T22:00:20.868470",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T22:00:24.057042",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T22:00:27.217733",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T22:00:30.469956",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T22:00:33.650985",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T22:00:36.859539",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T22:00:40.075507",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T22:00:43.282908",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T22:00:46.459245",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T22:00:49.698291",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T22:00:52.914790",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T22:00:56.085877",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T22:00:59.234949",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T22:01:02.518765",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T22:01:05.663506",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T22:01:08.842304",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T22:01:12.005855",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T22:01:15.162208",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T22:01:18.323711",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T22:01:21.507043",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T22:01:24.701689",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T22:01:27.892969",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T22:01:31.100501",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T22:01:34.458071",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T22:01:37.959029",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T22:01:41.255520",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T22:01:44.432227",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T22:01:47.211602",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T22:01:48.373204",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T22:01:51.543700",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T22:01:54.717158",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T22:01:55.055512",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T22:01:56.226546",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T22:01:59.411388",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T22:02:02.600722",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T22:02:05.904970",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T22:02:09.093318",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T22:02:12.303161",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T22:02:15.494675",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T22:02:18.691497",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T22:02:21.886670",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  },
+  {
+    "timestamp": "2025-06-04T22:02:25.127665",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Fail",
+    "defect": 1
+  }
+]
