@@ -1,0 +1,452 @@
+[
+  {
+    "timestamp": "2025-06-05T10:02:04.071190",
+    "mold_code": 4.0,
+    "molten_temp": 729.0,
+    "cast_pressure": 332.0,
+    "passorfail": "Fail",
+    "defect": 1,
+    "data_id": "2025-06-05T10:02:04.071174_-2773780525442735834",
+    "original_timestamp": "2025-06-05T10:02:04.067759"
+  },
+  {
+    "timestamp": "2025-06-05T10:02:04.072567",
+    "mold_code": 4.0,
+    "molten_temp": 729.0,
+    "cast_pressure": 332.0,
+    "passorfail": "Fail",
+    "defect": 1,
+    "data_id": "2025-06-05T10:02:04.072556_-2773780525442735834",
+    "original_timestamp": "2025-06-05T10:02:04.067759"
+  },
+  {
+    "timestamp": "2025-06-05T10:02:07.262915",
+    "mold_code": 4.0,
+    "molten_temp": 729.0,
+    "cast_pressure": 332.0,
+    "passorfail": "Fail",
+    "defect": 1,
+    "data_id": "2025-06-05T10:02:07.262898_-2773780525442735834",
+    "original_timestamp": "2025-06-05T10:02:04.067759"
+  },
+  {
+    "timestamp": "2025-06-05T10:02:10.461251",
+    "mold_code": 4.0,
+    "molten_temp": 729.0,
+    "cast_pressure": 332.0,
+    "passorfail": "Fail",
+    "defect": 1,
+    "data_id": "2025-06-05T10:02:10.461235_-2773780525442735834",
+    "original_timestamp": "2025-06-05T10:02:04.067759"
+  },
+  {
+    "timestamp": "2025-06-05T10:02:13.639204",
+    "mold_code": 4.0,
+    "molten_temp": 729.0,
+    "cast_pressure": 332.0,
+    "passorfail": "Fail",
+    "defect": 1,
+    "data_id": "2025-06-05T10:02:13.639187_-2773780525442735834",
+    "original_timestamp": "2025-06-05T10:02:04.067759"
+  },
+  {
+    "timestamp": "2025-06-05T10:02:16.830410",
+    "mold_code": 4.0,
+    "molten_temp": 729.0,
+    "cast_pressure": 332.0,
+    "passorfail": "Fail",
+    "defect": 1,
+    "data_id": "2025-06-05T10:02:16.830395_-2773780525442735834",
+    "original_timestamp": "2025-06-05T10:02:04.067759"
+  },
+  {
+    "timestamp": "2025-06-05T10:02:19.700321",
+    "mold_code": 4.0,
+    "molten_temp": 729.0,
+    "cast_pressure": 332.0,
+    "passorfail": "Fail",
+    "defect": 1,
+    "data_id": "2025-06-05T10:02:19.700302_-2773780525442735834",
+    "original_timestamp": "2025-06-05T10:02:04.067759"
+  },
+  {
+    "timestamp": "2025-06-05T10:02:22.863540",
+    "mold_code": 4.0,
+    "molten_temp": 729.0,
+    "cast_pressure": 332.0,
+    "passorfail": "Fail",
+    "defect": 1,
+    "data_id": "2025-06-05T10:02:22.863523_-2773780525442735834",
+    "original_timestamp": "2025-06-05T10:02:04.067759"
+  },
+  {
+    "timestamp": "2025-06-05T10:02:26.088508",
+    "mold_code": 4.0,
+    "molten_temp": 729.0,
+    "cast_pressure": 332.0,
+    "passorfail": "Fail",
+    "defect": 1,
+    "data_id": "2025-06-05T10:02:26.088491_-2773780525442735834",
+    "original_timestamp": "2025-06-05T10:02:04.067759"
+  },
+  {
+    "timestamp": "2025-06-05T10:02:29.426015",
+    "mold_code": 1.0,
+    "molten_temp": 717.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Pass",
+    "defect": 0,
+    "data_id": "2025-06-05T10:02:29.425997_-2231268691702075905",
+    "original_timestamp": "2025-06-05T10:02:29.422433"
+  },
+  {
+    "timestamp": "2025-06-05T10:02:29.427266",
+    "mold_code": 1.0,
+    "molten_temp": 717.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Pass",
+    "defect": 0,
+    "data_id": "2025-06-05T10:02:29.427253_-2231268691702075905",
+    "original_timestamp": "2025-06-05T10:02:29.422433"
+  },
+  {
+    "timestamp": "2025-06-05T10:02:32.606898",
+    "mold_code": 1.0,
+    "molten_temp": 717.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Pass",
+    "defect": 0,
+    "data_id": "2025-06-05T10:02:32.606883_-2231268691702075905",
+    "original_timestamp": "2025-06-05T10:02:29.422433"
+  },
+  {
+    "timestamp": "2025-06-05T10:02:35.769577",
+    "mold_code": 1.0,
+    "molten_temp": 717.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Pass",
+    "defect": 0,
+    "data_id": "2025-06-05T10:02:35.769562_-2231268691702075905",
+    "original_timestamp": "2025-06-05T10:02:29.422433"
+  },
+  {
+    "timestamp": "2025-06-05T10:02:38.937058",
+    "mold_code": 1.0,
+    "molten_temp": 717.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Pass",
+    "defect": 0,
+    "data_id": "2025-06-05T10:02:38.937040_-2231268691702075905",
+    "original_timestamp": "2025-06-05T10:02:29.422433"
+  },
+  {
+    "timestamp": "2025-06-05T10:02:42.151229",
+    "mold_code": 1.0,
+    "molten_temp": 717.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Pass",
+    "defect": 0,
+    "data_id": "2025-06-05T10:02:42.151210_-2231268691702075905",
+    "original_timestamp": "2025-06-05T10:02:29.422433"
+  },
+  {
+    "timestamp": "2025-06-05T10:02:45.341299",
+    "mold_code": 1.0,
+    "molten_temp": 717.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Pass",
+    "defect": 0,
+    "data_id": "2025-06-05T10:02:45.341281_-2231268691702075905",
+    "original_timestamp": "2025-06-05T10:02:29.422433"
+  },
+  {
+    "timestamp": "2025-06-05T10:02:48.539485",
+    "mold_code": 1.0,
+    "molten_temp": 717.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Pass",
+    "defect": 0,
+    "data_id": "2025-06-05T10:02:48.539469_-2231268691702075905",
+    "original_timestamp": "2025-06-05T10:02:29.422433"
+  },
+  {
+    "timestamp": "2025-06-05T10:02:51.762771",
+    "mold_code": 1.0,
+    "molten_temp": 717.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Pass",
+    "defect": 0,
+    "data_id": "2025-06-05T10:02:51.762751_-2231268691702075905",
+    "original_timestamp": "2025-06-05T10:02:29.422433"
+  },
+  {
+    "timestamp": "2025-06-05T10:02:55.030357",
+    "mold_code": 4.0,
+    "molten_temp": 729.0,
+    "cast_pressure": 331.0,
+    "passorfail": "Pass",
+    "defect": 0,
+    "data_id": "2025-06-05T10:02:55.030339_-4465509328228293416",
+    "original_timestamp": "2025-06-05T10:02:55.026179"
+  },
+  {
+    "timestamp": "2025-06-05T10:02:55.030973",
+    "mold_code": 4.0,
+    "molten_temp": 729.0,
+    "cast_pressure": 331.0,
+    "passorfail": "Pass",
+    "defect": 0,
+    "data_id": "2025-06-05T10:02:55.030962_-4465509328228293416",
+    "original_timestamp": "2025-06-05T10:02:55.026179"
+  },
+  {
+    "timestamp": "2025-06-05T10:02:58.340527",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 331.0,
+    "passorfail": "Pass",
+    "defect": 0,
+    "data_id": "2025-06-05T10:02:58.340513_-8850676096301759855",
+    "original_timestamp": "2025-06-05T10:02:58.337018"
+  },
+  {
+    "timestamp": "2025-06-05T10:02:58.341125",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 331.0,
+    "passorfail": "Pass",
+    "defect": 0,
+    "data_id": "2025-06-05T10:02:58.341115_-8850676096301759855",
+    "original_timestamp": "2025-06-05T10:02:58.337018"
+  },
+  {
+    "timestamp": "2025-06-05T10:03:01.580580",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 331.0,
+    "passorfail": "Pass",
+    "defect": 0,
+    "data_id": "2025-06-05T10:03:01.580563_-8850676096301759855",
+    "original_timestamp": "2025-06-05T10:02:58.337018"
+  },
+  {
+    "timestamp": "2025-06-05T10:03:04.981568",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 331.0,
+    "passorfail": "Pass",
+    "defect": 0,
+    "data_id": "2025-06-05T10:03:04.981550_-8850676096301759855",
+    "original_timestamp": "2025-06-05T10:02:58.337018"
+  },
+  {
+    "timestamp": "2025-06-05T10:03:08.172843",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 331.0,
+    "passorfail": "Pass",
+    "defect": 0,
+    "data_id": "2025-06-05T10:03:08.172827_-8850676096301759855",
+    "original_timestamp": "2025-06-05T10:02:58.337018"
+  },
+  {
+    "timestamp": "2025-06-05T10:03:11.354278",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 331.0,
+    "passorfail": "Pass",
+    "defect": 0,
+    "data_id": "2025-06-05T10:03:11.354265_-8850676096301759855",
+    "original_timestamp": "2025-06-05T10:02:58.337018"
+  },
+  {
+    "timestamp": "2025-06-05T10:03:14.514318",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 331.0,
+    "passorfail": "Pass",
+    "defect": 0,
+    "data_id": "2025-06-05T10:03:14.514302_-8850676096301759855",
+    "original_timestamp": "2025-06-05T10:02:58.337018"
+  },
+  {
+    "timestamp": "2025-06-05T10:03:17.694607",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 331.0,
+    "passorfail": "Pass",
+    "defect": 0,
+    "data_id": "2025-06-05T10:03:17.694593_-8850676096301759855",
+    "original_timestamp": "2025-06-05T10:02:58.337018"
+  },
+  {
+    "timestamp": "2025-06-05T10:03:20.886034",
+    "mold_code": 4.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 331.0,
+    "passorfail": "Pass",
+    "defect": 0,
+    "data_id": "2025-06-05T10:03:20.886015_-8850676096301759855",
+    "original_timestamp": "2025-06-05T10:02:58.337018"
+  },
+  {
+    "timestamp": "2025-06-05T10:03:24.223556",
+    "mold_code": 4.0,
+    "molten_temp": 733.0,
+    "cast_pressure": 332.0,
+    "passorfail": "Pass",
+    "defect": 0,
+    "data_id": "2025-06-05T10:03:24.223544_-3225472437945440844",
+    "original_timestamp": "2025-06-05T10:03:24.220133"
+  },
+  {
+    "timestamp": "2025-06-05T10:03:24.224122",
+    "mold_code": 4.0,
+    "molten_temp": 733.0,
+    "cast_pressure": 332.0,
+    "passorfail": "Pass",
+    "defect": 0,
+    "data_id": "2025-06-05T10:03:24.224113_-3225472437945440844",
+    "original_timestamp": "2025-06-05T10:03:24.220133"
+  },
+  {
+    "timestamp": "2025-06-05T10:03:27.403526",
+    "mold_code": 4.0,
+    "molten_temp": 733.0,
+    "cast_pressure": 332.0,
+    "passorfail": "Pass",
+    "defect": 0,
+    "data_id": "2025-06-05T10:03:27.403513_-3225472437945440844",
+    "original_timestamp": "2025-06-05T10:03:24.220133"
+  },
+  {
+    "timestamp": "2025-06-05T10:03:30.691267",
+    "mold_code": 4.0,
+    "molten_temp": 733.0,
+    "cast_pressure": 332.0,
+    "passorfail": "Pass",
+    "defect": 0,
+    "data_id": "2025-06-05T10:03:30.691253_-3225472437945440844",
+    "original_timestamp": "2025-06-05T10:03:24.220133"
+  },
+  {
+    "timestamp": "2025-06-05T10:03:34.197640",
+    "mold_code": 4.0,
+    "molten_temp": 733.0,
+    "cast_pressure": 332.0,
+    "passorfail": "Pass",
+    "defect": 0,
+    "data_id": "2025-06-05T10:03:34.197623_-3225472437945440844",
+    "original_timestamp": "2025-06-05T10:03:24.220133"
+  },
+  {
+    "timestamp": "2025-06-05T10:03:37.425964",
+    "mold_code": 4.0,
+    "molten_temp": 733.0,
+    "cast_pressure": 332.0,
+    "passorfail": "Pass",
+    "defect": 0,
+    "data_id": "2025-06-05T10:03:37.425868_-3225472437945440844",
+    "original_timestamp": "2025-06-05T10:03:24.220133"
+  },
+  {
+    "timestamp": "2025-06-05T10:03:40.594440",
+    "mold_code": 4.0,
+    "molten_temp": 733.0,
+    "cast_pressure": 332.0,
+    "passorfail": "Pass",
+    "defect": 0,
+    "data_id": "2025-06-05T10:03:40.594417_-3225472437945440844",
+    "original_timestamp": "2025-06-05T10:03:24.220133"
+  },
+  {
+    "timestamp": "2025-06-05T10:03:43.798708",
+    "mold_code": 4.0,
+    "molten_temp": 733.0,
+    "cast_pressure": 332.0,
+    "passorfail": "Pass",
+    "defect": 0,
+    "data_id": "2025-06-05T10:03:43.798687_-3225472437945440844",
+    "original_timestamp": "2025-06-05T10:03:24.220133"
+  },
+  {
+    "timestamp": "2025-06-05T10:03:47.011817",
+    "mold_code": 4.0,
+    "molten_temp": 733.0,
+    "cast_pressure": 332.0,
+    "passorfail": "Pass",
+    "defect": 0,
+    "data_id": "2025-06-05T10:03:47.011800_-3225472437945440844",
+    "original_timestamp": "2025-06-05T10:03:24.220133"
+  },
+  {
+    "timestamp": "2025-06-05T10:03:50.457543",
+    "mold_code": 1.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Pass",
+    "defect": 0,
+    "data_id": "2025-06-05T10:03:50.457521_2975567672222867418",
+    "original_timestamp": "2025-06-05T10:03:50.453670"
+  },
+  {
+    "timestamp": "2025-06-05T10:03:50.458113",
+    "mold_code": 1.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Pass",
+    "defect": 0,
+    "data_id": "2025-06-05T10:03:50.458103_2975567672222867418",
+    "original_timestamp": "2025-06-05T10:03:50.453670"
+  },
+  {
+    "timestamp": "2025-06-05T10:03:53.614489",
+    "mold_code": 1.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Pass",
+    "defect": 0,
+    "data_id": "2025-06-05T10:03:53.614472_2975567672222867418",
+    "original_timestamp": "2025-06-05T10:03:50.453670"
+  },
+  {
+    "timestamp": "2025-06-05T10:03:56.806200",
+    "mold_code": 1.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Pass",
+    "defect": 0,
+    "data_id": "2025-06-05T10:03:56.806183_2975567672222867418",
+    "original_timestamp": "2025-06-05T10:03:50.453670"
+  },
+  {
+    "timestamp": "2025-06-05T10:04:00.013044",
+    "mold_code": 1.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Pass",
+    "defect": 0,
+    "data_id": "2025-06-05T10:04:00.013028_2975567672222867418",
+    "original_timestamp": "2025-06-05T10:03:50.453670"
+  },
+  {
+    "timestamp": "2025-06-05T10:04:03.340386",
+    "mold_code": 1.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Pass",
+    "defect": 0,
+    "data_id": "2025-06-05T10:04:03.340367_2975567672222867418",
+    "original_timestamp": "2025-06-05T10:03:50.453670"
+  },
+  {
+    "timestamp": "2025-06-05T10:04:06.562501",
+    "mold_code": 1.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 330.0,
+    "passorfail": "Pass",
+    "defect": 0,
+    "data_id": "2025-06-05T10:04:06.562489_2975567672222867418",
+    "original_timestamp": "2025-06-05T10:03:50.453670"
+  }
+]

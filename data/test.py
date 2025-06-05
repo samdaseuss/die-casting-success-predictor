@@ -57,15 +57,15 @@ def get_current_data():
     
     sample = test.iloc[sample_idx].copy()
     
-    # 모델 예측
     sample_input = sample.drop(labels=['passorfail'], errors='ignore').values.reshape(1, -1)
     prediction = model.predict(sample_input)[0]
     pred_label = "Pass" if prediction == 0 else "Fail"
     
-    # 결과 생성
+
     result = sample.to_dict()
     result['passorfail'] = pred_label
     result['timestamp'] = datetime.datetime.now().isoformat()
     result['debug_info'] = f"call={call_count},idx={sample_idx}"
     
     return result
+

@@ -568,8 +568,8 @@ def create_process_visualization():
     
     stages = [
         {"id": "melting", "label": "용융/가열", "icon": "HEAT", "desc": "용융온도 제어", "duration": "10초"},
-        {"id": "casting", "label": "주조/압력", "icon": "CAST", "desc": "주조압력 적용", "duration": "15초"},
-        {"id": "cooling", "label": "냉각/완료", "icon": "COOL", "desc": "금형 냉각", "duration": "5초"}
+        {"id": "casting", "label": "주조/압력", "icon": "CAST", "desc": "주조압력 적용", "duration": "19초"},
+        {"id": "cooling", "label": "냉각/완료", "icon": "COOL", "desc": "금형 냉각", "duration": "1초"}
     ]
     
     progress_html = '<div class="process-indicator">'
@@ -762,6 +762,7 @@ def create_production_summary():
         st.metric("양품률", f"{pass_rate:.1f}%", delta=delta_rate)
 
 def run():
+    st.markdown("### 실시간 공정 현황")
     RealTimeDataManager.initialize_session_state()
 
     if st.session_state.get('data_collection_started', False):
@@ -775,8 +776,6 @@ def run():
         st.info("관리도를 로드하는 중입니다...")
     
     st.markdown("---")
-    
-    st.markdown("### 실시간 공정 현황")
     st.markdown("#### 다이캐스팅 공정 단계")
     try:
         current_stage, progress = create_process_visualization()
@@ -817,73 +816,8 @@ def run():
         st.markdown("#### 핵심 품질 지표")
         create_mold_status_overview()
         create_key_metrics()
-        
         st.markdown("---")
-        
-        st.markdown("### 시스템 제어")
 
-        col_btn1, col_btn2 = st.columns(2)
-
-        with col_btn1:
-            if st.button("수동 데이터 읽기", use_container_width=True):
-                with st.spinner("데이터 읽는 중..."):
-                    try:
-                        new_data = read_data_from_test_py()
-                        if new_data:
-                            prev_buffer_size = len(st.session_state.get('realtime_buffer', []))
-                            prev_collected_count = len(st.session_state.get('collected_data', []))
-                            
-                            st.session_state.current_status = new_data
-                            st.session_state.collected_data.append(new_data)
-                            save_data_to_file(st.session_state.collected_data)
-                            
-                            collected = RealTimeDataManager.collect_realtime_data()
-                            current_buffer_size = len(st.session_state.get('realtime_buffer', []))
-                            current_collected_count = len(st.session_state.get('collected_data', []))
-                            
-                            st.success(f"""데이터 수집 완료!
-                            - 수집된 데이터: {current_collected_count}개 (이전: {prev_collected_count}개)
-                            - 실시간 버퍼: {current_buffer_size}개 (이전: {prev_buffer_size}개)
-                            - 버퍼 추가 여부: {'성공' if collected else '중복/실패'}""")
-                            
-                            with st.expander("수집된 데이터 내용"):
-                                st.json(new_data)
-                            
-                            time.sleep(3)
-                            st.rerun()
-                        else:
-                            st.error("데이터를 읽어올 수 없습니다.")
-                    except Exception as e:
-                        st.error(f"데이터 읽기 오류: {str(e)}")
-                        st.write(f"오류 상세: {e}")
-
-        with col_btn2:
-            if st.button("즉시 데이터 저장", use_container_width=True):
-                if st.session_state.collected_data:
-                    with st.spinner("저장 중..."):
-                        try:
-                            save_snapshot_batch(st.session_state.collected_data)
-                            st.session_state.last_snapshot_time = time.time()
-                            st.success("데이터가 즉시 저장되었습니다!")
-                        except Exception as e:
-                            st.error(f"저장 오류: {str(e)}")
-                else:
-                    st.warning("저장할 데이터가 없습니다.")
-
-        if st.button("관리도 데이터 갱신", use_container_width=True):
-            with st.spinner("관리도 데이터 갱신 중..."):
-                try:
-                    if RealTimeDataManager.update_control_chart():
-                        RealTimeDataManager.save_buffer_to_file()
-                        st.success("관리도 데이터가 갱신되었습니다!")
-                        time.sleep(1)
-                        st.rerun()
-                    else:
-                        st.warning("갱신할 데이터가 없습니다.")
-                except Exception as e:
-                    st.error(f"관리도 데이터 갱신 오류: {str(e)}")
-
-        st.markdown("---")
         info_cols = st.columns(2)
         
         with info_cols[0]:

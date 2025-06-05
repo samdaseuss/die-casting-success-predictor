@@ -1,0 +1,142 @@
+[
+  {
+    "timestamp": "2025-06-05T11:34:41.716056",
+    "mold_code": 2.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 332.0,
+    "passorfail": "Pass",
+    "defect": 0,
+    "data_id": "2025-06-05T11:34:41.716040_-3496207545811307852",
+    "original_timestamp": "2025-06-05T11:34:41.712044"
+  },
+  {
+    "timestamp": "2025-06-05T11:34:41.716662",
+    "mold_code": 2.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 332.0,
+    "passorfail": "Pass",
+    "defect": 0,
+    "data_id": "2025-06-05T11:34:41.716652_-3496207545811307852",
+    "original_timestamp": "2025-06-05T11:34:41.712044"
+  },
+  {
+    "timestamp": "2025-06-05T11:34:43.919992",
+    "mold_code": 2.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 332.0,
+    "passorfail": "Pass",
+    "defect": 0,
+    "data_id": "2025-06-05T11:34:43.919974_-3496207545811307852",
+    "original_timestamp": "2025-06-05T11:34:41.712044"
+  },
+  {
+    "timestamp": "2025-06-05T11:34:44.522945",
+    "mold_code": 2.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 332.0,
+    "passorfail": "Pass",
+    "defect": 0,
+    "data_id": "2025-06-05T11:34:44.522928_-3496207545811307852",
+    "original_timestamp": "2025-06-05T11:34:41.712044"
+  },
+  {
+    "timestamp": "2025-06-05T11:34:47.698221",
+    "mold_code": 2.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 332.0,
+    "passorfail": "Pass",
+    "defect": 0,
+    "data_id": "2025-06-05T11:34:47.698202_-3496207545811307852",
+    "original_timestamp": "2025-06-05T11:34:41.712044"
+  },
+  {
+    "timestamp": "2025-06-05T11:34:47.962464",
+    "mold_code": 2.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 332.0,
+    "passorfail": "Pass",
+    "defect": 0,
+    "data_id": "2025-06-05T11:34:47.962448_-3496207545811307852",
+    "original_timestamp": "2025-06-05T11:34:41.712044"
+  },
+  {
+    "timestamp": "2025-06-05T11:34:51.110043",
+    "mold_code": 2.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 332.0,
+    "passorfail": "Pass",
+    "defect": 0,
+    "data_id": "2025-06-05T11:34:51.110025_-3496207545811307852",
+    "original_timestamp": "2025-06-05T11:34:41.712044"
+  },
+  {
+    "timestamp": "2025-06-05T11:34:54.281040",
+    "mold_code": 2.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 332.0,
+    "passorfail": "Pass",
+    "defect": 0,
+    "data_id": "2025-06-05T11:34:54.281024_-3496207545811307852",
+    "original_timestamp": "2025-06-05T11:34:41.712044"
+  },
+  {
+    "timestamp": "2025-06-05T11:34:57.448116",
+    "mold_code": 2.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 332.0,
+    "passorfail": "Pass",
+    "defect": 0,
+    "data_id": "2025-06-05T11:34:57.448099_-3496207545811307852",
+    "original_timestamp": "2025-06-05T11:34:41.712044"
+  },
+  {
+    "timestamp": "2025-06-05T11:35:00.615136",
+    "mold_code": 2.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 332.0,
+    "passorfail": "Pass",
+    "defect": 0,
+    "data_id": "2025-06-05T11:35:00.615120_-3496207545811307852",
+    "original_timestamp": "2025-06-05T11:34:41.712044"
+  },
+  {
+    "timestamp": "2025-06-05T11:35:03.779146",
+    "mold_code": 2.0,
+    "molten_temp": 731.0,
+    "cast_pressure": 332.0,
+    "passorfail": "Pass",
+    "defect": 0,
+    "data_id": "2025-06-05T11:35:03.779129_-3496207545811307852",
+    "original_timestamp": "2025-06-05T11:34:41.712044"
+  },
+  {
+    "timestamp": "2025-06-05T11:35:07.028113",
+    "mold_code": 4.0,
+    "molten_temp": 730.0,
+    "cast_pressure": 331.0,
+    "passorfail": "Pass",
+    "defect": 0,
+    "data_id": "2025-06-05T11:35:07.028097_2162501297268330927",
+    "original_timestamp": "2025-06-05T11:35:07.023752"
+  },
+  {
+    "timestamp": "2025-06-05T11:35:07.029597",
+    "mold_code": 4.0,
+    "molten_temp": 730.0,
+    "cast_pressure": 331.0,
+    "passorfail": "Pass",
+    "defect": 0,
+    "data_id": "2025-06-05T11:35:07.029584_2162501297268330927",
+    "original_timestamp": "2025-06-05T11:35:07.023752"
+  },
+  {
+    "timestamp": "2025-06-05T11:35:10.238442",
+    "mold_code": 4.0,
+    "molten_temp": 730.0,
+    "cast_pressure": 331.0,
+    "passorfail": "Pass",
+    "defect": 0,
+    "data_id": "2025-06-05T11:35:10.238429_2162501297268330927",
+    "original_timestamp": "2025-06-05T11:35:07.023752"
+  }
+]

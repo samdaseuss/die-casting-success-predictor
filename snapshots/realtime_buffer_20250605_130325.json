@@ -1,0 +1,22 @@
+[
+  {
+    "timestamp": "2025-06-05T13:03:25.230141",
+    "mold_code": 1.0,
+    "molten_temp": 730.0,
+    "cast_pressure": 329.0,
+    "passorfail": "Pass",
+    "defect": 0,
+    "data_id": "2025-06-05T13:03:25.230123_-2146658567122746855",
+    "original_timestamp": "2025-06-05T13:03:25.225975"
+  },
+  {
+    "timestamp": "2025-06-05T13:03:25.236913",
+    "mold_code": 1.0,
+    "molten_temp": 730.0,
+    "cast_pressure": 329.0,
+    "passorfail": "Pass",
+    "defect": 0,
+    "data_id": "2025-06-05T13:03:25.236895_-2146658567122746855",
+    "original_timestamp": "2025-06-05T13:03:25.225975"
+  }
+]
