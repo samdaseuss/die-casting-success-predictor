@@ -11,7 +11,6 @@ snapshots_dir = project_root / "snapshots"
 DATA_FILE = project_root / "data/collected_data.json"
 TEST_PY_FILE = project_root / "data/test.py"
 
-# 마지막으로 읽은 데이터의 해시값 저장
 _last_data_hash = None
 
 def load_data_from_file():
