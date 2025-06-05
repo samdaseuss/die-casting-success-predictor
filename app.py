@@ -13,7 +13,7 @@ from utils.data_utils import (
     save_snapshot_batch, prepare_postgresql_data, 
     read_data_from_test_py, save_data_to_file
 )
-from variables import fields_input
+from datetime import datetime
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -45,7 +45,6 @@ def apply_global_style(dark_mode=False):
         input_bg = "#2c2c2e"
         sidebar_bg = "#1c1c1e"
     else:
-        # 라이트 모드 색상
         bg_color = "#ffffff"
         secondary_bg = "#f8f9fa"
         card_bg = "#ffffff"
@@ -61,21 +60,101 @@ def apply_global_style(dark_mode=False):
     
     st.markdown(f"""
     <style>
-    /* 전체 앱 스타일 */
     .stApp {{
         background-color: {bg_color} !important;
         color: {text_primary} !important;
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     }}
     
-    /* 메인 컨테이너 */
+    /* Deploy 버튼 숨기기 */
+    [data-testid="stToolbar"] {{
+        display: none !important;
+    }}
+    
+    .stDeployButton {{
+        display: none !important;
+    }}
+    
+    button[title="Deploy this app"] {{
+        display: none !important;
+    }}
+    
+    [data-testid="stHeader"] .css-18ni7ap,
+    [data-testid="stHeader"] .css-1dp5vir,
+    [data-testid="stHeader"] .css-164nlkn {{
+        display: none !important;
+    }}
+    
+    /* 헤더 영역 커스터마이징 */
+    [data-testid="stHeader"] {{
+        background-color: {bg_color} !important;
+        height: 60px !important;
+        position: relative !important;
+    }}
+    
+    /* 헤더 우상단 컨트롤 영역 */
+    .header-controls {{
+        position: fixed;
+        top: 15px;
+        right: 20px;
+        z-index: 999999;
+        display: flex;
+        gap: 15px;
+        align-items: center;
+        background: {bg_color};
+        padding: 5px;
+        border-radius: 25px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }}
+    
+    /* 시스템 상태 표시 */
+    .system-status-indicator {{
+        background: {"linear-gradient(135deg, #32d74b, #28ca42)" if dark_mode else "linear-gradient(135deg, #ff453a, #ff3b30)"};
+        color: white;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 11px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        box-shadow: 0 2px 8px {"rgba(50, 215, 75, 0.3)" if dark_mode else "rgba(255, 69, 58, 0.3)"};
+        border: 2px solid {"rgba(50, 215, 75, 0.5)" if dark_mode else "rgba(255, 69, 58, 0.5)"};
+        min-width: 100px;
+        text-align: center;
+    }}
+    
+    .system-status-indicator.online {{
+        background: linear-gradient(135deg, #32d74b, #28ca42);
+        border-color: rgba(50, 215, 75, 0.5);
+        box-shadow: 0 2px 8px rgba(50, 215, 75, 0.3);
+    }}
+    
+    .system-status-indicator.offline {{
+        background: linear-gradient(135deg, #ff453a, #ff3b30);
+        border-color: rgba(255, 69, 58, 0.5);
+        box-shadow: 0 2px 8px rgba(255, 69, 58, 0.3);
+    }}
+    
+    /* 헤더 스타일 수정 */
+    header[data-testid="stHeader"] {{
+        background-color: {bg_color} !important;
+        color: {text_primary} !important;
+    }}
+    
+    header[data-testid="stHeader"] * {{
+        color: {text_primary} !important;
+    }}
+    
+    [data-testid="stHeader"] .main-header {{
+        color: {text_primary} !important;
+    }}
+    
     .main .block-container {{
         padding: 1.5rem 1rem;
         background: {bg_color} !important;
         max-width: 1200px;
     }}
     
-    /* 사이드바 스타일 */
     .css-1d391kg, [data-testid="stSidebar"] {{
         background: {sidebar_bg} !important;
         border-right: 1px solid {border_color} !important;
@@ -86,7 +165,6 @@ def apply_global_style(dark_mode=False):
         color: {text_primary} !important;
     }}
     
-    /* 메트릭 컨테이너 */
     [data-testid="metric-container"] {{
         background: {card_bg} !important;
         border: 1px solid {border_color} !important;
@@ -111,30 +189,116 @@ def apply_global_style(dark_mode=False):
         font-weight: 500;
     }}
     
-    /* 버튼 스타일 */
-    .stButton > button {{
+    /* 강화된 버튼 스타일 - 모든 가능한 선택자 포함 */
+    .stButton > button,
+    .stButton button,
+    button[kind="primary"],
+    button[kind="secondary"],
+    div[data-testid="stButton"] > button,
+    .element-container .stButton > button {{
         background: {accent_color} !important;
         color: white !important;
         border: none !important;
-        border-radius: 12px;
-        padding: 12px 24px;
+        border-radius: 12px !important;
+        padding: 12px 24px !important;
         font-weight: 600 !important;
-        transition: all 0.3s ease;
-        box-shadow: 0 2px 8px rgba(0,122,255,0.3);
+        transition: all 0.3s ease !important;
+        box-shadow: 0 2px 8px rgba(0,122,255,0.3) !important;
+        text-decoration: none !important;
     }}
     
-    .stButton > button:hover {{
+    .stButton > button:hover,
+    .stButton button:hover,
+    button[kind="primary"]:hover,
+    button[kind="secondary"]:hover,
+    div[data-testid="stButton"] > button:hover,
+    .element-container .stButton > button:hover {{
         background: {accent_color}dd !important;
-        transform: translateY(-1px);
-        box-shadow: 0 4px 12px rgba(0,122,255,0.4);
+        color: white !important;
+        transform: translateY(-1px) !important;
+        box-shadow: 0 4px 12px rgba(0,122,255,0.4) !important;
     }}
     
-    .stButton > button:focus {{
+    .stButton > button:focus,
+    .stButton button:focus,
+    button[kind="primary"]:focus,
+    button[kind="secondary"]:focus,
+    div[data-testid="stButton"] > button:focus,
+    .element-container .stButton > button:focus {{
         outline: none !important;
+        color: white !important;
+        background: {accent_color} !important;
         box-shadow: 0 0 0 3px {accent_color}40 !important;
     }}
     
-    /* 탭 스타일 */
+    .stButton > button:active,
+    .stButton button:active,
+    button[kind="primary"]:active,
+    button[kind="secondary"]:active,
+    div[data-testid="stButton"] > button:active,
+    .element-container .stButton > button:active {{
+        color: white !important;
+        background: {accent_color}cc !important;
+        transform: translateY(0px) !important;
+    }}
+    
+    /* 버튼 내부 텍스트 요소들 */
+    .stButton > button span,
+    .stButton > button div,
+    .stButton > button p,
+    .stButton button span,
+    .stButton button div,
+    .stButton button p,
+    button[kind="primary"] span,
+    button[kind="primary"] div,
+    button[kind="primary"] p,
+    button[kind="secondary"] span,
+    button[kind="secondary"] div,
+    button[kind="secondary"] p {{
+        color: white !important;
+    }}
+    
+    /* 비활성화된 버튼 스타일 */
+    .stButton > button:disabled,
+    .stButton button:disabled,
+    button[kind="primary"]:disabled,
+    button[kind="secondary"]:disabled {{
+        background: {text_secondary} !important;
+        color: white !important;
+        opacity: 0.6 !important;
+        cursor: not-allowed !important;
+        transform: none !important;
+        box-shadow: none !important;
+    }}
+    
+    .stButton > button:disabled span,
+    .stButton > button:disabled div,
+    .stButton > button:disabled p,
+    .stButton button:disabled span,
+    .stButton button:disabled div,
+    .stButton button:disabled p {{
+        color: white !important;
+    }}
+    
+    /* 토글 스타일 커스터마이징 */
+    .stToggle > div {{
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }}
+    
+    .stToggle > div > div {{
+        order: 2;
+    }}
+    
+    .stToggle > div > label {{
+        order: 1;
+        font-size: 14px !important;
+        font-weight: 600 !important;
+        color: {text_primary} !important;
+        margin: 0 !important;
+    }}
+    
     .stTabs [data-baseweb="tab-list"] {{
         background: {card_bg} !important;
         border-radius: 12px;
@@ -158,7 +322,6 @@ def apply_global_style(dark_mode=False):
         color: white !important;
     }}
     
-    /* 텍스트 요소 */
     h1, h2, h3, h4, h5, h6 {{
         color: {text_primary} !important;
         font-weight: 600;
@@ -168,7 +331,6 @@ def apply_global_style(dark_mode=False):
         color: {text_primary} !important;
     }}
     
-    /* 입력 필드 */
     .stSelectbox > div > div {{
         background-color: {input_bg} !important;
         border: 1px solid {border_color} !important;
@@ -187,7 +349,6 @@ def apply_global_style(dark_mode=False):
         color: {text_primary} !important;
     }}
     
-    /* 데이터프레임 */
     .stDataFrame {{
         border-radius: 12px;
         overflow: hidden;
@@ -210,7 +371,6 @@ def apply_global_style(dark_mode=False):
         border-bottom: 1px solid {border_color} !important;
     }}
     
-    /* 알림 스타일 */
     .stSuccess {{
         background: rgba(52, 199, 89, 0.1) !important;
         border: 1px solid {success_color} !important;
@@ -239,7 +399,6 @@ def apply_global_style(dark_mode=False):
         color: {accent_color} !important;
     }}
     
-    /* 상태 인디케이터 */
     .status-running {{
         background: rgba(52, 199, 89, 0.15) !important;
         color: {success_color} !important;
@@ -262,7 +421,6 @@ def apply_global_style(dark_mode=False):
         border: 1px solid {error_color};
     }}
     
-    /* 체크박스 */
     .stCheckbox > label {{
         color: {text_primary} !important;
     }}
@@ -271,23 +429,20 @@ def apply_global_style(dark_mode=False):
         color: {text_primary} !important;
     }}
     
-    /* 선택박스 라벨 */
     .stSelectbox > label {{
         color: {text_primary} !important;
     }}
     
-    /* 로딩 스피너 */
     .stSpinner {{
         color: {accent_color} !important;
     }}
     
-    /* 실시간 상태 표시 (작고 간단하게) */
     .realtime-status {{
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding: 8px 12px;
-        background: rgba({text_secondary.replace("#", "").replace("98989d", "152, 152, 157") if dark_mode else text_secondary.replace("#", "").replace("6e6e73", "110, 110, 115")}, 0.1) !important;
+        background: rgba(110, 110, 115, 0.1) !important;
         border-radius: 8px;
         margin: 8px 0;
         font-size: 11px;
@@ -305,7 +460,6 @@ def apply_global_style(dark_mode=False):
         color: {accent_color} !important;
     }}
     
-    /* 몰드 상태 카드 스타일 */
     .mold-status-card {{
         background: {card_bg} !important;
         border: 1px solid {border_color} !important;
@@ -330,7 +484,7 @@ def apply_global_style(dark_mode=False):
     }}
     
     .mold-status-card.active::before {{
-        content: '● LIVE';
+        content: 'LIVE';
         position: absolute;
         top: -10px;
         right: 15px;
@@ -387,7 +541,6 @@ def apply_global_style(dark_mode=False):
         50% {{ opacity: 0.9; transform: scale(1.05); }}
     }}
     
-    /* 공정 시각화 스타일 */
     .process-indicator {{
         display: flex;
         justify-content: space-around;
@@ -481,6 +634,21 @@ def apply_global_style(dark_mode=False):
         50% {{ transform: scale(1.15); }}
         100% {{ transform: scale(1.1); }}
     }}
+    
+    /* 추가적인 버튼 스타일 강화 */
+    [data-testid="stVerticalBlock"] .stButton > button,
+    [data-testid="stHorizontalBlock"] .stButton > button,
+    .row-widget .stButton > button {{
+        background: {accent_color} !important;
+        color: white !important;
+        border: none !important;
+    }}
+    
+    [data-testid="stVerticalBlock"] .stButton > button span,
+    [data-testid="stHorizontalBlock"] .stButton > button span,
+    .row-widget .stButton > button span {{
+        color: white !important;
+    }}
     </style>
     """, unsafe_allow_html=True)
 
@@ -492,9 +660,7 @@ st.set_page_config(
 )
 
 def get_synchronized_start_time():
-    """시스템 시작 시간을 30초 주기로 동기화"""
     if 'system_start_time' not in st.session_state:
-        # 현재 시간을 30초 단위로 맞춤
         current_time = time.time()
         aligned_time = (int(current_time) // 30) * 30
         st.session_state.system_start_time = aligned_time
@@ -515,54 +681,282 @@ if 'dark_mode' not in st.session_state:
 if 'ng_history' not in st.session_state:
     st.session_state.ng_history = []
 
+
+class RealTimeDataManager:    
+    @staticmethod
+    def initialize_session_state():
+        defaults = {
+            'ng_history': [],
+            'collected_data': [],
+            'control_chart_data': RealTimeDataManager._generate_initial_chart_data(),
+            'realtime_buffer': deque(maxlen=100),
+            'last_chart_update': time.time(),
+            'chart_update_interval': 180,
+            'data_collection_started': False,
+            'current_status': {},
+            'last_collected_id': None
+        }
+        
+        for key, value in defaults.items():
+            if key not in st.session_state:
+                st.session_state[key] = value
+    
+    @staticmethod
+    def _generate_initial_chart_data():
+        np.random.seed(42)
+        base_rate = 5.0
+        time_points = [datetime.now() - timedelta(hours=29-i) for i in range(30)]
+        
+        defect_rates = []
+        for i in range(30):
+            trend = 0.1 * i
+            noise = np.random.normal(0, 1.5)
+            special_cause = 3.0 if i in [15, 20, 25] else 0
+            rate = max(0, base_rate + trend + noise + special_cause)
+            defect_rates.append(rate)
+        
+        return {
+            'time_points': time_points,
+            'defect_rates': defect_rates
+        }
+    
+    @staticmethod
+    def collect_realtime_data():
+        current_data = st.session_state.get("current_status", {})
+        
+        if current_data and 'passorfail' in current_data:
+            current_timestamp = datetime.now().isoformat()
+            data_hash = hash(str(current_data))
+            data_id = f"{current_timestamp}_{data_hash}"
+            
+            if st.session_state.get('last_collected_id') == data_id:
+                return False
+            
+            data_point = {
+                'timestamp': datetime.now(),
+                'mold_code': current_data.get('mold_code', 0),
+                'molten_temp': current_data.get('molten_temp', 0),
+                'cast_pressure': current_data.get('cast_pressure', 0),
+                'passorfail': current_data.get('passorfail', 'Pass'),
+                'defect': 1 if current_data.get('passorfail') == 'Fail' else 0,
+                'data_id': data_id,
+                'original_timestamp': current_data.get('timestamp', '')
+            }
+            
+            st.session_state.realtime_buffer.append(data_point)
+            st.session_state.last_collected_id = data_id
+            
+            return True
+        return False
+    
+    @staticmethod
+    def calculate_defect_rate_from_buffer(time_window_minutes=60):
+        if not st.session_state.realtime_buffer:
+            return None
+        
+        now = datetime.now()
+        cutoff_time = now - timedelta(minutes=time_window_minutes)
+        
+        recent_data = [
+            point for point in st.session_state.realtime_buffer 
+            if point['timestamp'] >= cutoff_time
+        ]
+        
+        if not recent_data:
+            return None
+        
+        total_count = len(recent_data)
+        defect_count = sum(point['defect'] for point in recent_data)
+        defect_rate = (defect_count / total_count) * 100
+        
+        return {
+            'timestamp': now,
+            'defect_rate': defect_rate,
+            'total_count': total_count,
+            'defect_count': defect_count
+        }
+    
+    @staticmethod
+    def should_update_chart():
+        current_time = time.time()
+        last_update = st.session_state.get('last_chart_update', 0)
+        interval = st.session_state.get('chart_update_interval', 180)
+        
+        return (current_time - last_update) >= interval
+    
+    @staticmethod
+    def update_control_chart():
+        if not st.session_state.realtime_buffer:
+            return False
+        
+        defect_data = RealTimeDataManager.calculate_defect_rate_from_buffer()
+        
+        if defect_data is None:
+            return False
+        
+        chart_data = st.session_state.control_chart_data
+        chart_data['time_points'].append(defect_data['timestamp'])
+        chart_data['defect_rates'].append(defect_data['defect_rate'])
+        
+        if len(chart_data['time_points']) > 30:
+            chart_data['time_points'] = chart_data['time_points'][-30:]
+            chart_data['defect_rates'] = chart_data['defect_rates'][-30:]
+        
+        RealTimeDataManager._recalculate_control_limits(chart_data)
+        
+        st.session_state.last_chart_update = time.time()
+        
+        return True
+    
+    @staticmethod
+    def _recalculate_control_limits(chart_data):
+        if len(chart_data['defect_rates']) < 5:
+            return
+        
+        recent_rates = chart_data['defect_rates']
+        mean_rate = np.mean(recent_rates)
+        std_rate = np.std(recent_rates)
+        
+        chart_data['control_limits'] = {
+            'mean': mean_rate,
+            'std': std_rate,
+            'ucl': mean_rate + 3 * std_rate,
+            'lcl': max(0, mean_rate - 3 * std_rate),
+            'usl': mean_rate + 2 * std_rate,
+            'lsl': max(0, mean_rate - 2 * std_rate)
+        }
+    
+    @staticmethod
+    def save_buffer_to_file():
+        if not st.session_state.realtime_buffer:
+            return False
+        
+        try:
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            filename = snapshots_dir / f"realtime_buffer_{timestamp}.json"
+            
+            buffer_data = []
+            for point in st.session_state.realtime_buffer:
+                serializable_point = point.copy()
+                serializable_point['timestamp'] = point['timestamp'].isoformat()
+                buffer_data.append(serializable_point)
+            
+            snapshots_dir.mkdir(exist_ok=True)
+            with open(filename, 'w', encoding='utf-8') as f:
+                json.dump(buffer_data, f, ensure_ascii=False, indent=2)
+            
+            return True
+        except Exception as e:
+            st.error(f"버퍼 저장 오류: {str(e)}")
+            return False
+
+
 def main():
     apply_global_style(st.session_state.dark_mode)
     
+    system_status_class = "system-status-indicator online" if st.session_state.data_collection_started else "system-status-indicator offline"
+    system_status_text = "시스템 가동중" if st.session_state.data_collection_started else "시스템 중지"
+    
+    # 헤더 컨트롤과 토글을 위한 컬럼 레이아웃
+    header_col1, header_col2 = st.columns([8, 2])
+    
+    with header_col1:
+        # 시각적 표시용 헤더 컨트롤
+        st.markdown(f'''
+        <div class="header-controls">
+            <div class="{system_status_class}">{system_status_text}</div>
+        </div>
+        ''', unsafe_allow_html=True)
+    
+    with header_col2:
+        # 다크모드 토글을 오른쪽 상단에 배치
+        dark_mode_toggle = st.toggle("", value=st.session_state.dark_mode, key="header_dark_toggle")
+        if dark_mode_toggle != st.session_state.dark_mode:
+            st.session_state.dark_mode = dark_mode_toggle
+            st.rerun()
+    
     with st.sidebar:
-        st.markdown("### 시스템 제어")
-        
-        st.markdown("---")
-        st.markdown("### 테마 설정")
-        
-        theme_col1, theme_col2 = st.columns(2)
-        with theme_col1:
-            if st.button("라이트", use_container_width=True, disabled=not st.session_state.dark_mode):
-                st.session_state.dark_mode = False
-                st.rerun()
-        
-        with theme_col2:
-            if st.button("다크", use_container_width=True, disabled=st.session_state.dark_mode):
-                st.session_state.dark_mode = True
-                st.rerun()
-        
-        st.markdown("---")
-        
-        # 데이터 수집 시작/중지 버튼
         st.markdown("### 데이터 수집")
-        col1, col2 = st.columns(2)
+        col1, col2 = st.columns([1, 1])
         with col1:
             if st.button("시작", use_container_width=True, disabled=st.session_state.data_collection_started):
                 st.session_state.data_collection_started = True
                 st.session_state.collected_data = load_data_from_file()
-                
-                # 시스템 시작 시간을 30초 주기로 동기화
                 get_synchronized_start_time()
                 st.success("시작됨!")
                 time.sleep(1)
                 st.rerun()
-        
         with col2:
             if st.button("중지", use_container_width=True, disabled=not st.session_state.data_collection_started):
                 st.session_state.data_collection_started = False
                 st.success("중지됨!")
                 time.sleep(1)
                 st.rerun()
-        
-        if st.session_state.data_collection_started:
-            st.markdown('<div class="status-running">시스템 가동중</div>', unsafe_allow_html=True)
-        else:
-            st.markdown('<div class="status-stopped">시스템 중지</div>', unsafe_allow_html=True)
-        
+        st.markdown("---")
+
+        st.markdown("### 시스템 제어")
+
+        col_btn1, col_btn2 = st.columns(2)
+
+        with col_btn1:
+            if st.button("수동 데이터 읽기", use_container_width=True):
+                with st.spinner("데이터 읽는 중..."):
+                    try:
+                        new_data = read_data_from_test_py()
+                        if new_data:
+                            prev_buffer_size = len(st.session_state.get('realtime_buffer', []))
+                            prev_collected_count = len(st.session_state.get('collected_data', []))
+                            
+                            st.session_state.current_status = new_data
+                            st.session_state.collected_data.append(new_data)
+                            save_data_to_file(st.session_state.collected_data)
+                            
+                            collected = RealTimeDataManager.collect_realtime_data()
+                            current_buffer_size = len(st.session_state.get('realtime_buffer', []))
+                            current_collected_count = len(st.session_state.get('collected_data', []))
+                            
+                            st.success(f"""데이터 수집 완료!
+                            - 수집된 데이터: {current_collected_count}개 (이전: {prev_collected_count}개)
+                            - 실시간 버퍼: {current_buffer_size}개 (이전: {prev_buffer_size}개)
+                            - 버퍼 추가 여부: {'성공' if collected else '중복/실패'}""")
+                            
+                            with st.expander("수집된 데이터 내용"):
+                                st.json(new_data)
+                            
+                            time.sleep(3)
+                            st.rerun()
+                        else:
+                            st.error("데이터를 읽어올 수 없습니다.")
+                    except Exception as e:
+                        st.error(f"데이터 읽기 오류: {str(e)}")
+                        st.write(f"오류 상세: {e}")
+
+        with col_btn2:
+            if st.button("즉시 데이터 저장", use_container_width=True):
+                if st.session_state.collected_data:
+                    with st.spinner("저장 중..."):
+                        try:
+                            save_snapshot_batch(st.session_state.collected_data)
+                            st.session_state.last_snapshot_time = time.time()
+                            st.success("데이터가 즉시 저장되었습니다!")
+                        except Exception as e:
+                            st.error(f"저장 오류: {str(e)}")
+                else:
+                    st.warning("저장할 데이터가 없습니다.")
+
+        if st.button("관리도 데이터 갱신", use_container_width=True):
+            with st.spinner("관리도 데이터 갱신 중..."):
+                try:
+                    if RealTimeDataManager.update_control_chart():
+                        RealTimeDataManager.save_buffer_to_file()
+                        st.success("관리도 데이터가 갱신되었습니다!")
+                        time.sleep(1)
+                        st.rerun()
+                    else:
+                        st.warning("갱신할 데이터가 없습니다.")
+                except Exception as e:
+                    st.error(f"관리도 데이터 갱신 오류: {str(e)}")
+
         st.markdown("---")
         
         st.markdown("### 새로고침 설정")
@@ -579,8 +973,6 @@ def main():
                 st.session_state.current_status = {}
                 st.session_state.last_snapshot_time = time.time()
                 st.session_state.last_update_time = 0
-
-                # 시스템 시작 시간 초기화
                 if 'system_start_time' in st.session_state:
                     del st.session_state.system_start_time
                 if DATA_FILE.exists():
@@ -661,13 +1053,13 @@ def main():
                 except Exception as e:
                     logger.warning(f"실시간 버퍼 업데이트 실패: {str(e)}")
         
-        if current_time - st.session_state.last_snapshot_time > 900:  # 15분 = 900초
+        if current_time - st.session_state.last_snapshot_time > 900:
             if st.session_state.collected_data:
                 save_snapshot_batch(st.session_state.collected_data)
                 st.session_state.last_snapshot_time = current_time
                 logger.info("15분 누적데이터 저장 완료")
     
-    st.markdown('<h1 class="main-header">다이캐스팅 품질 예측 대시보드</h1>', unsafe_allow_html=True)
+    st.markdown('<h2 class="main-header">다이캐스팅 품질 예측 대시보드</h1>', unsafe_allow_html=True)
     
     tabs = st.tabs([
         "실시간 현황", 
@@ -688,7 +1080,6 @@ def main():
     with tabs[3]:
         analysis_m_t.run()
     
-    # == 자동 새로고침 ==
     if auto_refresh and st.session_state.data_collection_started:
         time.sleep(3)
         st.rerun()
