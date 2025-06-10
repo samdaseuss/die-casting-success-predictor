@@ -29,6 +29,9 @@ from utils.data_utils import (
     get_today_pass_data,
     get_all_sensor_data,
     get_all_pass_sensor_data)
+from streamlit.components.v1 import html
+from typing import Optional
+
 
 project_root = Path(__file__).parent.parent
 sys.path.append(str(project_root))
@@ -577,6 +580,63 @@ def get_current_process_stage():
     
     return stage, progress, max_progress
 
+def display_status_metric(
+    label: str,
+    status: str,
+    delta: Optional[str] = None
+):
+    # 상태별 컬러 매핑
+    color_map = {
+        "정상": "#34C759",
+        "경고": "#ff9f0a",
+        "관리이탈": "#FF3B30",
+    }
+    color = color_map.get(status, "black")
+    
+    # delta HTML (없으면 빈 문자열)
+    delta_html = (
+        f"<div style='"
+        f"font-size:0.875rem; "
+        f"color:gray; "
+        f"margin-top:0.1rem;"
+        f"'>"
+        f"{delta}"
+        f"</div>"
+    ) if delta is not None else ""
+    
+    # 전체 컴포넌트 렌더링
+    html(
+        f"""
+        <div style="
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        ">
+            <!-- 레이블 -->
+            <div style="
+                font-size: 0.875rem;
+                color: gray;
+                margin-bottom: 0.25rem;
+            ">
+                {label}
+            </div>
+            <!-- 상태 / 값 -->
+            <div style="
+                font-size: 2rem;
+                font-weight: 500;
+                color: {color};
+                font-family: -apple-system, BlinkMacSystemFont,'Segoe UI', Roboto, Oxygen, Ubuntu,Cantarell, 'Open Sans', 'Helvetica Neue',sans-serif;
+            ">
+                {status}
+            </div>
+            {delta_html}
+        </div>
+        """,
+        height=100  # 필요에 따라 조정
+    )
+
 def create_control_chart():
     dark_mode = st.session_state.get('dark_mode', False)
     
@@ -614,21 +674,18 @@ def create_control_chart():
     # 간단한 상태 표시
     display_compact_update_status()
     
-    col1, col2, col3, col4 = st.columns(4)
+    col1, col2, col3, col4, col5, col6 = st.columns([1,2,2,2,2,1])
     
     out_of_control = sum(1 for rate in data['defect_rates'] if rate > ucl or rate < lcl)
     warning_points = sum(1 for rate in data['defect_rates'] if (lsl < rate <= usl) or (usl <= rate <= ucl))
     
-    with col1:
-        st.metric("평균 불량률 (CL)", f"{mean_rate:.2f}%")
-    
     with col2:
-        st.metric("관리한계 이탈", f"{out_of_control}회", delta=f"{out_of_control-2}" if out_of_control > 2 else None)
-    
+        display_status_metric("평균 불량률 (CL)", f"{mean_rate:.2f}%")
     with col3:
-        st.metric("경고 구간", f"{warning_points}회")
-    
+        display_status_metric("관리한계 이탈", f"{out_of_control}회", delta=f"{out_of_control-2}" if out_of_control > 2 else None)
     with col4:
+        display_status_metric("경고 구간", f"{warning_points}회")
+    with col5:
         current_rate = data['defect_rates'][-1]
         if current_rate > ucl or current_rate < lcl:
             status = "관리이탈"
@@ -636,8 +693,7 @@ def create_control_chart():
             status = "경고"
         else:
             status = "정상"
-        
-        st.metric("현재 상태", status)
+        display_status_metric("현재 상태", status)
 
 def display_compact_update_status():
     current_time = time.time()
@@ -787,48 +843,69 @@ def create_app_gauge(title, value, min_val=0, max_val=100, unit="", target_range
     st_echarts(options=option, height="280px")
 
 key_metrics = [
-        {"key": "molten_temp", "label": "용융온도", "unit": "°C"},
-        {"key": "cast_pressure", "label": "주조압력", "unit": "MPa"},
-        {"key": "upper_mold_temp1", "label": "상금형온도", "unit": "°C"},
-        {"key": "passorfail", "label": "품질판정", "unit": ""}
-    ]
+    {"key": "cast_pressure", "label": "주조 압력", "unit": "MPa"},
+    {"key": "lower_mold_temp2", "label": "하금형온도2", "unit": "°C"},
+    {"key": "low_section_speed", "label": "저속구간속도", "unit": ""},
+    {"key": "lower_mold_temp1", "label": "하금형온도1", "unit": "°C"},
+    {"key": "upper_mold_temp1", "label": "상금형온도1", "unit": "°C"},
+    {"key": "upper_mold_temp2", "label": "상금형온도2", "unit": "°C"},
+    {"key": "sleeve_temperature", "label": "슬리브온도", "unit": "°C"},
+    {"key": "passorfail", "label": "품질판정", "unit": ""}
+]
 
 def create_key_metrics(key_metrics):
     current_data = st.session_state.get("current_status", {})
-    
     if not current_data:
         st.info("실시간 데이터를 기다리는 중...")
         return
-    
-    cols = st.columns(4)
-    for i, metric in enumerate(key_metrics):
-        key = metric["key"]
-        if key in current_data:
+
+    cols_per_row = 4
+    metrics_to_show = [m for m in key_metrics if m["key"] in current_data]
+    total = len(metrics_to_show)
+
+    for row_start in range(0, total, cols_per_row):
+        row_metrics = metrics_to_show[row_start:row_start + cols_per_row]
+        cols = st.columns(cols_per_row)
+
+        for idx, metric in enumerate(row_metrics):
+            key   = metric["key"]
             value = current_data[key]
-            
-            with cols[i]:
-                if key == "passorfail":
-                    delta = None
-                    if value == "Pass":
-                        st.metric(f"{metric['label']}", "Pass", delta=delta)
-                    else:
-                        st.metric(f"{metric['label']}", "Fail", delta=delta)
-                else:
-                    prev_key = f"prev_{key}"
-                    prev_value = st.session_state.get(prev_key)
-                    delta = None
-                    
-                    if prev_value is not None:
-                        diff = value - prev_value
-                        if abs(diff) > 0.01:
-                            delta = f"{diff:+.1f}"
-                    
-                    st.session_state[prev_key] = value
-                    st.metric(
-                        f"{metric['label']}", 
-                        f"{value:.1f} {metric['unit']}", 
-                        delta=delta
+            overall_idx = row_start + idx
+            is_last     = (overall_idx == total - 1)
+
+            with cols[idx]:
+                if is_last and key == "passorfail":
+                    color = "#34C759" if value == "Pass" else "#FF3B30"
+                    st.markdown(
+                        f"<div style='font-size:0.875rem; color:gray; margin-bottom:0.15rem;'>"
+                        f"{metric['label']}</div>",
+                        unsafe_allow_html=True
                     )
+                    # HTML 컴포넌트로 실제 스타일 적용
+                    html(
+                        f"""
+                        <div style="display: flex;font-size: 2rem;font-weight: bold;color: {color};">{value}</div>
+                        """,
+                        height=50,  # 적절히 조정
+                    )
+                else:
+                    if key == "passorfail":
+                        st.metric(metric["label"], value)
+                    else:
+                        prev_key   = f"prev_{key}"
+                        prev_value = st.session_state.get(prev_key)
+                        delta = None
+                        if prev_value is not None:
+                            diff = value - prev_value
+                            if abs(diff) > 0.01:
+                                delta = f"{diff:+.1f}"
+                        st.session_state[prev_key] = value
+                        st.metric(
+                            metric["label"],
+                            f"{value:.1f} {metric['unit']}",
+                            delta=delta
+                        )
+
 
 def create_ng_data_from_db_with_pagination():
     try:
@@ -1187,24 +1264,27 @@ def create_ng_data_from_db_with_pagination():
             st.dataframe(df_ng, use_container_width=True, hide_index=True)
 
 def render_cast_pressure():
-    st.markdown("#### 주조압력 모니터링")
+    st.markdown("#### 불량 확률 모니터링")
     
     current_pressure = 0
     if st.session_state.current_status and "cast_pressure" in st.session_state.current_status:
         current_pressure = st.session_state.current_status["cast_pressure"]
+    current_proba = 0
+    if st.session_state.current_status and "proba" in st.session_state.current_status:
+        current_proba = st.session_state.current_status["proba"]
     
     try:
         create_app_gauge(
-            title="주조압력", 
-            value=current_pressure, 
+            title="불량 확률", 
+            value=round(current_proba, 2),  # 소숫점 2자리까지 표시 (3째자리에서 반올림)
             min_val=0, 
             max_val=100,
-            unit=" MPa",
+            unit=" %",
             target_range=(70, 80)
         )
     except Exception as e:
         st.error(f"게이지 차트 오류: {e}")
-        st.metric("주조압력", f"{current_pressure:.1f} MPa")
+        st.metric("불량 확률", f"{current_proba:.1f} %")
 
 def render_production_status():
     st.markdown("### 생산 현황")
@@ -1247,7 +1327,10 @@ def render_quality_overview():
             count = len(list(snapshots_dir.glob("*snapshot*.json")))
         except:
             count = 0
-        st.metric("저장된 스냅샷", f"{count}개")
+        st.metric(
+            label="저장된 스냅샷",
+            help="1시간(60분) 단위로 자동 저장됨", 
+            value=f"{count}개")
     
     with info2:
         if st.session_state.get("data_collection_started", False):
@@ -1268,7 +1351,11 @@ def render_quality_overview():
             
         cycle_cols = st.columns(2)
         with cycle_cols[0]:
-            st.metric("현재 사이클", f"{current_cycle}")
+            st.metric(
+                label="현재 사이클", 
+                value=f"{current_cycle}",
+                help="용융/가열 > 주조/압력 > 냉각/완료로 이루어진 공정의 한 사이클을 의미합니다."
+            )
         with cycle_cols[1]:
             status = "데이터 수집 중" if first_cycle_completed else "준비 중"
             st.metric("수집 상태", status)

@@ -1,13 +1,13 @@
-version: '3.8'
-
 services:
   timescaledb:
     image: timescale/timescaledb:latest-pg15
+    container_name: diecasting-timescaledb
     environment:
       POSTGRES_DB: diecasting_db
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-securepassword123}
-      POSTGRES_INITDB_ARGS: "--auth-host=scram-sha-256"
+      POSTGRES_PASSWORD: securepassword123
+      # scram-sha-256 대신 trust 모드 사용 (개발환경)
+      POSTGRES_HOST_AUTH_METHOD: trust
     ports:
       - "5433:5432"
     volumes:
@@ -16,16 +16,17 @@ services:
     networks:
       - diecasting_network
     restart: unless-stopped
-    command: [ "postgres", "-c", "shared_preload_libraries=timescaledb" ]
+    command: ["postgres", "-c", "shared_preload_libraries=timescaledb"]
 
   streamlit:
     build: .
+    container_name: diecasting-streamlit
     environment:
       - POSTGRES_HOST=timescaledb
       - POSTGRES_PORT=5432
       - POSTGRES_DB=diecasting_db
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-securepassword123}
+      - POSTGRES_PASSWORD=securepassword123
     ports:
       - "8501:8501"
     depends_on:
@@ -40,7 +41,6 @@ services:
 
 volumes:
   timescale_data:
-
 
 networks:
   diecasting_network:

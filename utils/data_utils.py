@@ -22,17 +22,17 @@ DATA_FILE_TODAY = project_root / "data/collected_data_today.json"
 
 # TimescaleDB 연결 설정
 DB_CONFIG = {
-    'host': os.getenv('POSTGRES_HOST', 'localhost'),
-    'port': os.getenv('POSTGRES_PORT', '5432'),  # 문자열로 변경
+    'host': os.getenv('POSTGRES_HOST', 'timescaledb'),
+    'port': os.getenv('POSTGRES_PORT', '5432'),
     'database': os.getenv('POSTGRES_DB', 'diecasting_db'),
     'user': os.getenv('POSTGRES_USER', 'postgres'),
-    'password': os.getenv('POSTGRES_PASSWORD', 'securepassword123')  # 기본값 변경
+    'password': os.getenv('POSTGRES_PASSWORD', 'securepassword123')
 }
 
 def get_db_engine():
     """데이터베이스 엔진 생성"""
     try:
-        connection_string = f"postgresql://{DB_CONFIG['user']}:{DB_CONFIG['password']}@{DB_CONFIG['host']}:{DB_CONFIG['port']}/{DB_CONFIG['database']}"
+        connection_string = f"postgresql+psycopg2://{DB_CONFIG['user']}:{DB_CONFIG['password']}@{DB_CONFIG['host']}:{DB_CONFIG['port']}/{DB_CONFIG['database']}"
         engine = create_engine(connection_string, pool_pre_ping=True)
         return engine
     except Exception as e:
@@ -55,7 +55,7 @@ def init_timescale_db():
                     id BIGINT,
                     line TEXT,
                     mold_name TEXT,
-                    working INTEGER,
+                    working TEXT,
                     molten_temp REAL,
                     facility_operation_cycletime INTEGER,
                     production_cycletime INTEGER,
@@ -158,7 +158,7 @@ def is_duplicate_data(data_hash: str) -> bool:
         return False
 
 def save_to_timescale(data: Dict) -> bool:
-    """TimescaleDB에 데이터 저장 (중복 방지 포함)"""
+    """TimescaleDB에 데이터 저장 (중복 방지 포함) - 데이터 타입 변환 추가"""
     engine = get_db_engine()
     if not engine:
         return False
@@ -175,38 +175,67 @@ def save_to_timescale(data: Dict) -> bool:
             logger.info(f"중복 데이터 감지, 저장 건너뜀: {data_hash[:8]}")
             return False
         
+        # 데이터 변환 및 타입 처리
+        def safe_convert_to_int(value):
+            """안전한 정수 변환"""
+            if value is None:
+                return None
+            if isinstance(value, (int, float)):
+                return int(value)
+            if isinstance(value, str):
+                # 한글이나 텍스트가 포함된 경우 None 반환
+                if any(ord(char) > 127 for char in value):  # 비ASCII 문자 확인
+                    return None
+                try:
+                    return int(float(value))
+                except (ValueError, TypeError):
+                    return None
+            return None
+        
+        def safe_convert_to_float(value):
+            """안전한 실수 변환"""
+            if value is None:
+                return None
+            if isinstance(value, (int, float)):
+                return float(value)
+            if isinstance(value, str):
+                try:
+                    return float(value)
+                except (ValueError, TypeError):
+                    return None
+            return None
+        
         # 데이터 변환
         db_data = {
             'time': data.get('timestamp', datetime.now().isoformat()),
-            'id': data.get('id'),
-            'line': data.get('line'),
-            'mold_name': data.get('mold_name'),
-            'working': data.get('working'),
-            'molten_temp': data.get('molten_temp'),
-            'facility_operation_cycletime': data.get('facility_operation_cycleTime'),
-            'production_cycletime': data.get('production_cycletime'),
-            'low_section_speed': data.get('low_section_speed'),
-            'high_section_speed': data.get('high_section_speed'),
-            'cast_pressure': data.get('cast_pressure'),
-            'biscuit_thickness': data.get('biscuit_thickness'),
-            'upper_mold_temp1': data.get('upper_mold_temp1'),
-            'upper_mold_temp2': data.get('upper_mold_temp2'),
-            'lower_mold_temp1': data.get('lower_mold_temp1'),
-            'lower_mold_temp2': data.get('lower_mold_temp2'),
-            'sleeve_temperature': data.get('sleeve_temperature'),
-            'physical_strength': data.get('physical_strength'),
-            'coolant_temperature': data.get('Coolant_temperature'),
-            'ems_operation_time': data.get('EMS_operation_time'),
-            'mold_code': data.get('mold_code'),
-            'passorfail': data.get('passorfail'),
+            'id': safe_convert_to_int(data.get('id')),
+            'line': str(data.get('line', '')) if data.get('line') is not None else None,
+            'mold_name': str(data.get('mold_name', '')) if data.get('mold_name') is not None else None,
+            
+            # working 컬럼: 문자열 그대로 저장 (DB 스키마가 TEXT로 변경된 경우)
+            'working': str(data.get('working', '')) if data.get('working') is not None else None,
+            
+            # 숫자 컬럼들 안전 변환
+            'molten_temp': safe_convert_to_float(data.get('molten_temp')),
+            'facility_operation_cycletime': safe_convert_to_int(data.get('facility_operation_cycleTime')),
+            'production_cycletime': safe_convert_to_int(data.get('production_cycletime')),
+            'low_section_speed': safe_convert_to_float(data.get('low_section_speed')),
+            'high_section_speed': safe_convert_to_float(data.get('high_section_speed')),
+            'cast_pressure': safe_convert_to_float(data.get('cast_pressure')),
+            'biscuit_thickness': safe_convert_to_float(data.get('biscuit_thickness')),
+            'upper_mold_temp1': safe_convert_to_float(data.get('upper_mold_temp1')),
+            'upper_mold_temp2': safe_convert_to_float(data.get('upper_mold_temp2')),
+            'lower_mold_temp1': safe_convert_to_float(data.get('lower_mold_temp1')),
+            'lower_mold_temp2': safe_convert_to_float(data.get('lower_mold_temp2')),
+            'sleeve_temperature': safe_convert_to_float(data.get('sleeve_temperature')),
+            'physical_strength': safe_convert_to_float(data.get('physical_strength')),
+            'coolant_temperature': safe_convert_to_float(data.get('Coolant_temperature')),
+            'ems_operation_time': safe_convert_to_int(data.get('EMS_operation_time')),
+            'mold_code': safe_convert_to_int(data.get('mold_code')),
+            'passorfail': str(data.get('passorfail', 'Unknown')),
             'data_hash': data_hash,
-            'source': data.get('source', 'test.py')
+            'source': str(data.get('source', 'test.py'))
         }
-        
-        # None 값 처리
-        for key, value in db_data.items():
-            if value is None or (isinstance(value, str) and value.strip() == ''):
-                db_data[key] = None
         
         # DataFrame으로 변환하여 저장
         df = pd.DataFrame([db_data])
@@ -217,7 +246,80 @@ def save_to_timescale(data: Dict) -> bool:
         
     except Exception as e:
         logger.error(f"TimescaleDB 저장 실패: {e}")
+        # 구체적인 오류 정보 로깅
+        if "invalid input syntax for type integer" in str(e):
+            logger.error(f"정수 변환 오류 - 문제 데이터: working={data.get('working')}")
         return False
+
+def read_data_from_test_py():
+    """test.py에서 간단하게 데이터를 읽어오는 함수 - 저장 실패와 관계없이 데이터 반환"""
+    try:
+        import sys
+        import importlib.util
+        
+        module_name = "test_module"
+        if module_name in sys.modules:
+            del sys.modules[module_name]
+        
+        spec = importlib.util.spec_from_file_location(module_name, TEST_PY_FILE)
+        test_module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(test_module)
+        
+        # 현재 ID 가져오기 (없으면 73612부터 시작)
+        if 'current_data_id' not in st.session_state:
+            st.session_state.current_data_id = 73612
+        
+        current_id = st.session_state.current_data_id
+        
+        # test.py에서 데이터 읽기
+        if hasattr(test_module, 'get_current_data_by_id'):
+            try:
+                data = test_module.get_current_data_by_id(current_id)
+                
+                if isinstance(data, dict):
+                    data['timestamp'] = datetime.now().isoformat()
+                    data['source'] = 'test.py'
+                    
+                    # TimescaleDB에 저장 시도 (실패해도 데이터는 반환)
+                    save_success = False
+                    try:
+                        save_success = save_to_timescale(data)
+                        if save_success:
+                            logger.info(f"ID {current_id} 데이터 읽기 및 저장 성공")
+                        else:
+                            logger.debug(f"ID {current_id} 데이터 저장 실패 (중복일 수 있음)")
+                    except Exception as save_error:
+                        logger.warning(f"ID {current_id} 저장 중 오류 발생: {save_error}")
+                    
+                    # 저장 성공 여부와 관계없이 ID 증가 및 데이터 반환
+                    st.session_state.current_data_id += 1
+                    logger.info(f"ID {current_id} 데이터 읽기 완료, 다음 ID: {st.session_state.current_data_id}")
+                    
+                    # 항상 데이터 반환 (저장 실패와 무관)
+                    return data
+                        
+            except ValueError as ve:
+                if "존재하지 않습니다" in str(ve):
+                    logger.warning(f"ID {current_id}에 해당하는 데이터가 없습니다.")
+                    # ID를 73612로 재설정
+                    st.session_state.current_data_id = 73612
+                    return None
+                else:
+                    logger.error(f"ID {current_id} 데이터 읽기 오류: {ve}")
+                    st.session_state.current_data_id += 1
+                    return None
+                    
+            except Exception as e:
+                logger.error(f"ID {current_id} 예상치 못한 오류: {e}")
+                st.session_state.current_data_id += 1
+                return None
+        else:
+            logger.error("test.py에 get_current_data_by_id 함수가 없습니다.")
+            return None
+        
+    except Exception as e:
+        logger.error(f"test.py 읽기 중 오류: {e}")
+        return None
 
 def get_recent_fail_data(limit: int = 10) -> List[Dict]:
     """최근 불량 데이터 조회"""
@@ -255,6 +357,41 @@ def get_recent_fail_data(limit: int = 10) -> List[Dict]:
         logger.error(f"불량 데이터 조회 실패: {e}")
         return []
     
+def get_recent_pass_data(limit: int = 10) -> List[Dict]:
+    """최근 양품 데이터 조회"""
+    engine = get_db_engine()
+    if not engine:
+        return []
+    
+    try:
+        query = """
+            SELECT 
+                time,
+                id,
+                mold_code,
+                molten_temp,
+                cast_pressure,
+                passorfail,
+                upper_mold_temp1,
+                lower_mold_temp1
+            FROM sensor_data 
+            WHERE passorfail = 'Pass'
+            ORDER BY time DESC 
+        """
+        
+        # params를 딕셔너리 형태로 변경
+        df = pd.read_sql(query, engine, params={'limit': limit})
+        
+        # 시간 포맷 변환
+        if not df.empty and 'time' in df.columns:
+            df['time'] = pd.to_datetime(df['time']).dt.strftime('%H:%M:%S')
+        
+        return df.to_dict('records')
+        
+    except Exception as e:
+        logger.error(f"불량 데이터 조회 실패: {e}")
+        return []
+
 def get_recent_pass_data(limit: int = 10) -> List[Dict]:
     """최근 양품 데이터 조회"""
     engine = get_db_engine()
@@ -510,6 +647,7 @@ def read_data_from_test_py():
         logger.error(f"test.py 읽기 중 오류: {e}")
         return None
 
+
 # 기존 함수들 유지 (하위 호환성)
 def load_data_from_file():
     """저장된 데이터 파일에서 데이터 로드"""
@@ -567,22 +705,55 @@ def save_snapshot_batch(all_data):
     except Exception as e:
         logger.error(f"배치 스냅샷 저장 중 오류: {e}")
 
-def get_max_data_id(
-    table_name: str = "sensor_data",    # 실제 테이블명으로 수정
-    id_column: str = "id"               # 실제 PK 컬럼명으로 수정
-) -> int:
-    """
-    지정한 테이블의 id 컬럼에서 MAX 값을 읽어옵니다.
-    테이블명과 PK 컬럼명을 실제 스키마에 맞게 설정하세요.
-    """
+# def get_max_data_id(
+#     table_name: str = "sensor_data",    # 실제 테이블명으로 수정
+#     id_column: str = "id"               # 실제 PK 컬럼명으로 수정
+# ) -> int:
+#     """
+#     지정한 테이블의 id 컬럼에서 MAX 값을 읽어옵니다.
+#     테이블명과 PK 컬럼명을 실제 스키마에 맞게 설정하세요.
+#     """
+#     engine = get_db_engine()
+#     if engine is None:
+#         return 0
+
+#     query = text(f"SELECT COALESCE(MAX({id_column}), 0) FROM {table_name}")
+#     with engine.connect() as conn:
+#         max_id = conn.execute(query).scalar_one()
+#     return max_id
+
+def get_max_data_id(table_name: str = "sensor_data", id_column: str = "id") -> int:
+    """안전한 MAX ID 조회"""
     engine = get_db_engine()
     if engine is None:
         return 0
+    
+    try:
+        query = text(f"SELECT COALESCE(MAX({id_column}), 0) FROM {table_name}")
+        with engine.connect() as conn:
+            result = conn.execute(query)
+            max_id = result.scalar_one()
+            logger.info(f"데이터베이스 MAX ID 조회: {max_id}")
+            return int(max_id) if max_id is not None else 0
+    except Exception as e:
+        logger.error(f"MAX ID 조회 실패: {e}")
+        return 0
 
-    query = text(f"SELECT COALESCE(MAX({id_column}), 0) FROM {table_name}")
-    with engine.connect() as conn:
-        max_id = conn.execute(query).scalar_one()
-    return max_id
+def get_next_data_id():
+    """다음 사용할 ID 반환 및 증가"""
+    if 'current_data_id' not in st.session_state:
+        # 초기화 로직
+        max_id = get_max_data_id()
+        if max_id == 0:
+            st.session_state.current_data_id = 73612
+        else:
+            st.session_state.current_data_id = max_id + 1
+    
+    # 현재 ID 반환 후 증가
+    current_id = st.session_state.current_data_id
+    st.session_state.current_data_id += 1
+    logger.info(f"ID 할당: {current_id}, 다음 ID: {st.session_state.current_data_id}")
+    return current_id
 
 def get_fail_data_count():
     """불량 데이터의 총 개수를 조회"""
@@ -1001,8 +1172,8 @@ def get_fail_data_with_pagination_by_datetime(limit=15, offset=0, start_datetime
         base_query += f" ORDER BY time DESC LIMIT {limit} OFFSET {offset}"
         
         # 디버깅을 위한 로그
-        logger.info(f"실행할 쿼리: {base_query}")
-        logger.info(f"매개변수: {params}")
+        # logger.info(f"실행할 쿼리: {base_query}")
+        # logger.info(f"매개변수: {params}")
         
         # SQLAlchemy text() 사용하여 쿼리 실행
         with engine.connect() as conn:
@@ -1272,16 +1443,13 @@ def get_today_sensor_data() -> List[Dict]:
         return []
     
 def get_today_pass_data() -> List[Dict]:
-    """
-    오늘 날짜(00:00:00 ~ 23:59:59) 중
-    passorfail = 'Pass'인 sensor_data 레코드 조회
-    """
     engine = get_db_engine()
     if not engine:
         return []
-
+    
     try:
-        query = """
+        # 더 유연한 조건으로 수정
+        query = text("""
             SELECT
                 time,
                 id,
@@ -1294,24 +1462,22 @@ def get_today_pass_data() -> List[Dict]:
                 data_hash,
                 source
             FROM sensor_data
-            WHERE time >= date_trunc('day', now())
-              AND time <  date_trunc('day', now()) + INTERVAL '1 day'
-              AND passorfail = 'Pass'
+            WHERE DATE(time) = CURRENT_DATE
+                AND (UPPER(TRIM(passorfail)) = 'PASS' OR TRIM(passorfail) = 'Pass')
             ORDER BY time DESC
-        """
-        df = pd.read_sql(text(query), engine)
-
-        # 보기 편하게 문자열로 포맷팅
+        """)
+        
+        df = pd.read_sql(query, engine)
+        
         if not df.empty and 'time' in df.columns:
-            df['time'] = pd.to_datetime(df['time']) \
-                                 .dt.strftime('%Y-%m-%d %H:%M:%S')
-
+            df['time'] = pd.to_datetime(df['time']).dt.strftime('%Y-%m-%d %H:%M:%S')
+        
         return df.to_dict('records')
-
+        
     except Exception as e:
         logger.error(f"오늘 Pass 데이터 조회 실패: {e}")
         return []
-    
+
 # 전체 데이터베이스를 조회
 def get_all_sensor_data() -> List[Dict]:
     engine = get_db_engine()

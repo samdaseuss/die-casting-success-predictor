@@ -51,7 +51,6 @@ def get_synchronized_start_time():
     if 'system_start_time' not in st.session_state:
         current_time = time.time()
         st.session_state.system_start_time = current_time
-        # 이미 위에서 초기화된 변수들이므로 여기서는 설정만 함
         st.session_state.cycle_count = 0
         st.session_state.data_collection_count = 0
         st.session_state.last_collected_cycle = -1
@@ -173,7 +172,7 @@ def main():
                 with st.spinner("데이터 읽는 중..."):
                     try:
                         new_data = read_data_from_test_py()
-                        logger.info(f"***{new_data}***")
+                        logger.info(new_data)
                         if new_data:
                             st.session_state.current_status = new_data
                             append_today_data(new_data)
@@ -206,7 +205,8 @@ def main():
                             with st.expander("수집된 데이터 내용"):
                                 st.json(new_data)
                         else:
-                            st.info("새로운 데이터가 없거나 중복 데이터입니다.")
+
+                            st.info(f"새로운 데이터가 없거나 중복 데이터입니다.: {st.session_state.collected_data}")
                     except Exception as e:
                         st.error(f"데이터 읽기 오류: {str(e)}")
         with col_btn2:
@@ -226,7 +226,7 @@ def main():
                 try:
                     from tabs.realtime_manufacturing_m_t import RealTimeDataManager
                     if RealTimeDataManager.update_control_chart():
-                       # RealTimeDataManager.save_buffer_to_file()
+                        # RealTimeDataManager.save_buffer_to_file()
                         st.success("관리도 데이터가 갱신되었습니다!")
                     else:
                         st.warning("갱신할 데이터가 없습니다.")
