@@ -39,6 +39,7 @@ snapshots_dir.mkdir(exist_ok=True)
 DATA_FILE = data_dir / "collected_data.json"
 TEST_PY_FILE = data_dir / "test.py"
 
+
 st.set_page_config(
     page_title="다이캐스팅 품질 예측 대시보드",
     page_icon="⛔︎",
@@ -172,7 +173,7 @@ def main():
                 with st.spinner("데이터 읽는 중..."):
                     try:
                         new_data = read_data_from_test_py()
-                        logger.info(new_data)
+                        logger.info(f"***{new_data}***")
                         if new_data:
                             st.session_state.current_status = new_data
                             append_today_data(new_data)

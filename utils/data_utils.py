@@ -23,10 +23,10 @@ DATA_FILE_TODAY = project_root / "data/collected_data_today.json"
 # TimescaleDB 연결 설정
 DB_CONFIG = {
     'host': os.getenv('POSTGRES_HOST', 'localhost'),
-    'port': os.getenv('POSTGRES_PORT', '5432'),
-    'database': os.getenv('POSTGRES_DB', 'diecasting'),
-    'user': os.getenv('POSTGRES_USER', 'admin'),
-    'password': os.getenv('POSTGRES_PASSWORD', 'your_password')
+    'port': os.getenv('POSTGRES_PORT', '5432'),  # 문자열로 변경
+    'database': os.getenv('POSTGRES_DB', 'diecasting_db'),
+    'user': os.getenv('POSTGRES_USER', 'postgres'),
+    'password': os.getenv('POSTGRES_PASSWORD', 'securepassword123')  # 기본값 변경
 }
 
 def get_db_engine():
@@ -452,7 +452,6 @@ def read_data_from_test_py():
         import sys
         import importlib.util
         
-        # test.py 모듈 다시 로드
         module_name = "test_module"
         if module_name in sys.modules:
             del sys.modules[module_name]

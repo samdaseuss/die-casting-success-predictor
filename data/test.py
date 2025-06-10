@@ -12,7 +12,7 @@ warnings.filterwarnings("ignore", message=".*InconsistentVersionWarning.*")
 
 project_root = Path(__file__).resolve().parents[1]
 test_path = project_root / "data/test.csv"
-model_path = project_root / "models/best_model_20250604_1.pkl"
+model_path = project_root / "models/best_model_20250610_1.pkl"
 
 def preprocess_input(df):
     df = df.drop(columns=[
@@ -64,7 +64,9 @@ def get_current_data_by_id(id):
     sample_input = sample.drop(labels=['id', 'registration_time'], errors='ignore').values.reshape(1, -1)
 
     prediction = model.predict(sample_input)[0]
+    proba = model.predict_proba(sample)[0][1]
     pred_label = "Pass" if prediction == 0 else "Fail"
+    
 
     result = sample.to_dict()
     
@@ -79,6 +81,7 @@ def get_current_data_by_id(id):
             result[key] = value.isoformat()
     
     result['passorfail'] = pred_label
+    result['proba'] = proba
     result['timestamp'] = datetime.now().isoformat()  # 수정: datetime.datetime.now() → datetime.now()
     result['debug_info'] = f"id={id}"
 
