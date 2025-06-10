@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  timescaledb:
+    image: timescale/timescaledb:latest-pg15
+    environment:
+      POSTGRES_DB: diecasting_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-securepassword123}
+      POSTGRES_INITDB_ARGS: "--auth-host=scram-sha-256"
+    ports:
+      - "5433:5432"
+    volumes:
+      - timescale_data:/var/lib/postgresql/data
+      - ./init-scripts:/docker-entrypoint-initdb.d
+    networks:
+      - diecasting_network
+    restart: unless-stopped
+    command: [ "postgres", "-c", "shared_preload_libraries=timescaledb" ]
+
+  streamlit:
+    build: .
+    environment:
+      - POSTGRES_HOST=timescaledb
+      - POSTGRES_PORT=5432
+      - POSTGRES_DB=diecasting_db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-securepassword123}
+    ports:
+      - "8501:8501"
+    depends_on:
+      - timescaledb
+    volumes:
+      - ./data:/app/data
+      - ./models:/app/models
+      - ./snapshots:/app/snapshots
+    networks:
+      - diecasting_network
+    restart: unless-stopped
+
+volumes:
+  timescale_data:
+
+
+networks:
+  diecasting_network:
+    driver: bridge

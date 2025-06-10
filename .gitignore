@@ -34,3 +34,13 @@ logs/
 
 # Data
 data/collected_data.json
+
+# AWS key
+yjo-ls-server.pem
+
+# snapshots folder
+snapshots
+
+# setting file
+cleanup_and_restart.sh
+deploy.sh
